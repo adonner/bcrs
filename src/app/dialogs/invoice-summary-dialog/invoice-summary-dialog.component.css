@@ -1,0 +1,8 @@
+.mat-list-base .mat-list-item {
+  height: 1.5rem !important;
+}
+
+.mat-raised-button {
+  background-color: #81d4fa;
+  color: black;
+}

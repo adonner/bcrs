@@ -1,0 +1,19 @@
+.table-container {
+  height: 400px;
+  widows: 100%;
+  overflow: auto;
+}
+table {
+  width: 100%;
+}
+:host {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+
+.mat-raised-button {
+  background-color: #81d4fa;
+  color: black;
+}

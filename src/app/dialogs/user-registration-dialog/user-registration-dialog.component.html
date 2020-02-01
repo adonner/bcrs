@@ -1,0 +1,234 @@
+<!--
+============================================
+; Title: user-detail-dialog.component
+; Author: Troy Martin
+; Date: 01/09/2020
+; Modified By: Troy Martin
+; Description: User enrollment
+;===========================================
+-->
+<div fxLayout="column">
+  <h2>Create a new account</h2>
+  <!-- include the stepper liner requires form to be valid before continuing -->
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="accountForm">
+      <form [formGroup]="accountForm">
+        <ng-template matStepLabel>Account</ng-template>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-form-field fxFlex="50%">
+            <input
+              type="text"
+              matInput
+              formControlName="username"
+              placeholder="Username"
+              autofocus
+            />
+            <mat-error *ngIf="accountForm.controls['username'].hasError('usernameExists')">The username is already in use.</mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex="50%">
+            <input
+              type="password"
+              matInput
+              formControlName="password"
+              placeholder="Password"
+            />
+            <mat-error *ngIf="accountForm.controls['password'].hasError('minlength')">Minimum of 8 characters</mat-error>
+            <mat-error *ngIf="accountForm.controls['password'].hasError('pattern')">Requires one uppercase, one lowercase, and one number.</mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayoutAlign="end" fxLayoutGap="10px" style="padding-top:30px;">
+          <button mat-raised-button (click)="cancel()">Cancel</button>
+          <button mat-raised-button matStepperNext [disabled]="!accountForm.valid">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="personalInfoForm">
+      <form [formGroup]="personalInfoForm">
+        <ng-template matStepLabel>Personal information</ng-template>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-form-field fxFlex="50%">
+            <input
+              type="text"
+              matInput
+              formControlName="firstName"
+              placeholder="First Name"
+              autofocus
+            />
+          </mat-form-field>
+
+          <mat-form-field fxFlex="50%">
+            <input
+              type="text"
+              matInput
+              formControlName="lastName"
+              placeholder="Last Name"
+            />
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-form-field fxFlex="50%">
+            <input
+              type="text"
+              matInput
+              formControlName="phoneNumber"
+              placeholder="Phone Number"
+              mask="(000)000-0000"
+              [showMaskTyped]="true"
+            />
+          </mat-form-field>
+
+          <mat-form-field fxFlex="50%">
+            <input
+              type="text"
+              matInput
+              formControlName="email"
+              placeholder="Email Address"
+            />
+            <mat-error *ngIf="personalInfoForm.controls['email'].errors">Invalid email.</mat-error>
+
+          </mat-form-field>
+        </div>
+        <div fxLayoutAlign="end" fxLayoutGap="10px">
+          <button mat-raised-button (click)="cancel()">Cancel</button>
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="addressForm">
+      <form [formGroup]="addressForm">
+        <ng-template matStepLabel>Address</ng-template>
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <div fxLayout="column" fxLayoutAlign="start" fxFlexFill>
+            <mat-form-field>
+              <input
+                type="text"
+                matInput
+                formControlName="addressLine1"
+                placeholder="Address Line 1"
+                autofocus
+              />
+            </mat-form-field>
+
+            <mat-form-field>
+              <input
+                type="text"
+                matInput
+                formControlName="addressLine2"
+                placeholder="Address Line 2"
+              />
+            </mat-form-field>
+
+            <mat-form-field>
+              <input
+                type="text"
+                matInput
+                formControlName="city"
+                placeholder="City"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-form-field style="width:50%">
+            <input
+              type="text"
+              matInput
+              formControlName="state"
+              placeholder="State"
+            />
+          </mat-form-field>
+
+          <mat-form-field style="width:50%">
+            <input
+              type="text"
+              matInput
+              formControlName="postalCode"
+              placeholder="Postal Code"
+            />
+          </mat-form-field>
+        </div>
+
+        <div fxLayoutAlign="end" fxLayoutGap="10px">
+          <button mat-raised-button (click)="cancel()">Cancel</button>
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="securityQuestionsForm">
+      <form [formGroup]="securityQuestionsForm">
+        <ng-template matStepLabel>Security Questions</ng-template>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-form-field fxFlex="50%">
+            <mat-label>Select a question</mat-label>
+            <select matNativeControl formControlName="questionId1">
+              <option *ngFor="let q of questions" [value]="q._id">{{q.text}}</option>
+            </select>
+          </mat-form-field>
+          <mat-form-field fxFlex="50%">
+            <input
+              type="text"
+              matInput
+              formControlName="answer1"
+              placeholder="Answer"
+            />
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-form-field fxFlex="50%">
+            <mat-label>Select a question</mat-label>
+            <select matNativeControl formControlName="questionId2">
+              <option *ngFor="let q of questions" [value]="q._id">{{q.text}}</option>
+            </select>
+          </mat-form-field>
+          <mat-form-field fxFlex="50%">
+            <input
+              type="text"
+              matInput
+              formControlName="answer2"
+              placeholder="Answer"
+            />
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-form-field fxFlex="50%">
+            <mat-label>Select a question</mat-label>
+            <select matNativeControl formControlName="questionId3">
+              <option *ngFor="let q of questions" [value]="q._id">{{q.text}}</option>
+            </select>
+          </mat-form-field>
+          <mat-form-field fxFlex="50%">
+            <input
+              type="text"
+              matInput
+              formControlName="answer3"
+              placeholder="Answer"
+            />
+          </mat-form-field>
+        </div>
+        <div fxLayoutAlign="end" fxLayoutGap="10px">
+          <button mat-raised-button (click)="cancel()">Cancel</button>
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button matStepperNext (click)="getQuestions()" [disabled]="!securityQuestionsForm.valid">Next</button>
+        </div>
+      </form>
+
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Sign in</ng-template>
+      Click the Sign in button to setup your account and sign in.
+      <div fxLayoutAlign="end" fxLayoutGap="10px">
+        <button mat-raised-button (click)="cancel()">Cancel</button>
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button (click)="signIn()">Sign in</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

@@ -1,0 +1,54 @@
+<!--
+============================================
+; Title: base-layout.component
+; Author: Richard Krasso
+; Date: 01/06/2020
+; Modified By: Adam Donner, Troy Martin
+; Description: Base layout
+;===========================================
+-->
+<div class="body">
+  <div fxLayout="column">
+    <!-- navigation -->
+    <nav fxFlex>
+      <mat-toolbar>
+        <mat-toolbar-row>
+          <!-- logo -->
+          <a routerLink="/" style="text-decoration: none;"><img src="/assets/bobslogo.png" width="150px" height="120px"></a>
+          <div fxFlex></div>
+
+          <button class="navbar-link" routerLink="/" mat-button>Home</button>
+          <button class="navbar-link" mat-button [matMenuTriggerFor]="menu" *ngIf="hasAdmin">Administration</button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/admin/services">Services</button>
+            <button mat-menu-item routerLink="/admin/purchases-graph">Purchases by service</button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item routerLink="/admin/users">Users</button>
+            <button mat-menu-item routerLink="/admin/roles">Roles</button>
+            <button mat-menu-item routerLink="/admin/security-questions">Security Questions</button>
+          </mat-menu>
+          <button class="navbar-link" routerLink="/aboutus" mat-button>About Us</button>
+          <button class="navbar-link" routerLink="/contactus" mat-button>Contact Us</button>
+          <button class="navbar-link" mat-raised-button [matMenuTriggerFor]="profile">
+            <mat-icon>person_outline</mat-icon>
+          </button>
+          <mat-menu #profile="matMenu">
+            <button mat-menu-item routerLink="/profile">Profile</button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="logout()"><mat-icon>exit_to_app</mat-icon>Logout</button>
+          </mat-menu>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </nav>
+
+    <!-- main content -->
+    <div fxFlex>
+      <main class="main-content" fxFlex="100%;">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+
+    <!-- footer -->
+    <app-footer></app-footer>
+  </div>
+</div>

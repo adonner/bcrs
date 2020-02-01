@@ -1,0 +1,63 @@
+<!--
+============================================
+; Title: service-list.component.html
+; Author: Troy Martin
+; Date: 01/19/2020
+; Modified By: Troy Martin
+; Description: Services list
+;===========================================
+-->
+<div fxLayout="column" fxLayoutAlign="center space-around" fxFlex="1 1 40%">
+  <mat-card fxLayout="column">
+    <mat-card-header fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex>
+          <h3>Services</h3>
+        </div>
+        <div fxFlex>
+          <button
+            mat-raised-button
+            type="button"
+            class="font"
+            style="float: right;"
+            (click)="addService()"
+            color="primary"
+          >
+            <mat-icon>add</mat-icon>Add service
+          </button>
+        </div>
+    </mat-card-header>
+    <mat-card-content fxLayout="row" fxLayoutAlign="start center">
+      <div class="table-container" fxFlex>
+        <table mat-table [dataSource]="services">
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Description</th>
+            <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+          </ng-container>
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef>Price</th>
+            <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+          </ng-container>
+          <!-- add a ng-container for each column we are going to display -->
+          <ng-container matColumnDef="functions">
+            <th mat-header-cell *matHeaderCellDef style="text-align: right;">Functions</th>
+            <td mat-cell *matCellDef="let element">
+              <button style="float:right;" mat-icon-button (click)="deleteService(element._id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button style="float:right;" mat-icon-button (click)="editService(element._id)">
+                <mat-icon>edit</mat-icon>
+              </button>
+
+            </td>
+          </ng-container>
+          <tr
+            mat-header-row
+            *matHeaderRowDef="displayedColumns; sticky: true"
+          ></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+

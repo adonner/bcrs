@@ -1,0 +1,215 @@
+<!--
+============================================
+; Title: user-profile.component
+; Author: Troy Martin
+; Date: 01/23/2020
+; Modified By: Troy Martin
+; Description: User profile
+;===========================================
+-->
+
+<div fxLayout="column" fxLayoutAlign="center space-around" fxFlex="1 1 50%">
+  <mat-card>
+    <mat-card-header fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex>
+          <h3>User profile {{username}}</h3>
+        </div>
+      </div>
+    </mat-card-header>
+    <mat-card-content fxLayout="column" fxLayoutAlign="start">
+      <mat-tab-group>
+        <mat-tab label="Personal Info">
+          <form [formGroup]="personalInfoForm">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" style="padding-top: .5rem !important;">
+              <mat-form-field fxFlex="50%">
+                <input
+                  type="text"
+                  matInput
+                  formControlName="firstName"
+                  placeholder="First Name"
+                  autofocus
+                />
+              </mat-form-field>
+
+              <mat-form-field fxFlex="50%">
+                <input
+                  type="text"
+                  matInput
+                  formControlName="lastName"
+                  placeholder="Last Name"
+                />
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+              <mat-form-field fxFlex="50%">
+                <input
+                  type="text"
+                  matInput
+                  formControlName="phoneNumber"
+                  placeholder="Phone Number"
+                  mask="(000)000-0000"
+                  [showMaskTyped]="true"
+                />
+              </mat-form-field>
+
+              <mat-form-field fxFlex="50%">
+                <input
+                  type="text"
+                  matInput
+                  formControlName="email"
+                  placeholder="Email Address"
+                  mask="A*@A*.SSS"
+                  [dropSpecialCharacters]="false"
+                  [specialCharacters]="['@','.','-']"
+                />
+                <mat-error *ngIf="personalInfoForm.controls['email'].errors">Invalid email.</mat-error>
+
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center">
+              <div fxLayout="column" fxLayoutAlign="start" fxFlexFill>
+                <mat-form-field>
+                  <input
+                    type="text"
+                    matInput
+                    formControlName="addressLine1"
+                    placeholder="Address Line 1"
+                    autofocus
+                  />
+                </mat-form-field>
+
+                <mat-form-field>
+                  <input
+                    type="text"
+                    matInput
+                    formControlName="addressLine2"
+                    placeholder="Address Line 2"
+                  />
+                </mat-form-field>
+
+                <mat-form-field>
+                  <input
+                    type="text"
+                    matInput
+                    formControlName="city"
+                    placeholder="City"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+              <mat-form-field style="width:50%">
+                <input
+                  type="text"
+                  matInput
+                  formControlName="state"
+                  placeholder="State"
+                />
+              </mat-form-field>
+
+              <mat-form-field style="width:50%">
+                <input
+                  type="text"
+                  matInput
+                  formControlName="postalCode"
+                  placeholder="Postal Code"
+                />
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
+              <button mat-raised-button (click)="resetPersonalInfo()">Reset</button>
+              <button mat-raised-button (click)="savePersonalInfo()">Save</button>
+            </div>
+          </form>
+        </mat-tab>
+        <mat-tab label="Change Password">
+          <form [formGroup]="newPasswordForm">
+            <div fxLayout="column" fxLayoutAlign="start">
+              <mat-form-field style="padding-top: 3rem !important;">
+                <input type="password" matInput formControlName="currentPassword" placeholder="Current Password" />
+              </mat-form-field>
+              <mat-form-field style="padding-top: 3rem !important;">
+                <input type="password" matInput formControlName="password" placeholder="Password" />
+                <mat-error *ngIf="newPasswordForm.controls['password'].hasError('minlength')">Minimum of 8 characters
+                </mat-error>
+                <mat-error *ngIf="newPasswordForm.controls['password'].hasError('pattern')">Requires one uppercase, one
+                  lowercase, and one number.</mat-error>
+              </mat-form-field>
+              <mat-form-field style="padding-top: 3rem !important;">
+                <input type="password" matInput formControlName="confirmationPassword" placeholder="Confirm password" />
+                <mat-error *ngIf="newPasswordForm.controls['confirmationPassword'].hasError('passwordsDoNotMatch')">
+                  Passwords do not match</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px" style="padding-top:30px;">
+              <button mat-raised-button (click)="changePassword()" [disabled]="newPasswordForm.invalid">Change
+                password</button>
+            </div>
+          </form>
+        </mat-tab>
+        <mat-tab label="Change Security Questions">
+          <form [formGroup]="securityQuestionsForm">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px"  style="padding-top: 3rem !important;">
+              <mat-form-field fxFlex="50%">
+                <mat-label>Select a question</mat-label>
+                <select matNativeControl formControlName="questionId1">
+                  <option *ngFor="let q of questions" [value]="q._id">{{q.text}}</option>
+                </select>
+              </mat-form-field>
+              <mat-form-field fxFlex="50%">
+                <input
+                  type="text"
+                  matInput
+                  formControlName="answer1"
+                  placeholder="Answer"
+                />
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+              <mat-form-field fxFlex="50%">
+                <mat-label>Select a question</mat-label>
+                <select matNativeControl formControlName="questionId2">
+                  <option *ngFor="let q of questions" [value]="q._id">{{q.text}}</option>
+                </select>
+              </mat-form-field>
+              <mat-form-field fxFlex="50%">
+                <input
+                  type="text"
+                  matInput
+                  formControlName="answer2"
+                  placeholder="Answer"
+                />
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+              <mat-form-field fxFlex="50%">
+                <mat-label>Select a question</mat-label>
+                <select matNativeControl formControlName="questionId3">
+                  <option *ngFor="let q of questions" [value]="q._id">{{q.text}}</option>
+                </select>
+              </mat-form-field>
+              <mat-form-field fxFlex="50%">
+                <input
+                  type="text"
+                  matInput
+                  formControlName="answer3"
+                  placeholder="Answer"
+                />
+              </mat-form-field>
+            </div>
+            <div fxLayoutAlign="end" fxLayoutGap="10px">
+              <button mat-raised-button (click)="resetQuestions()">Reset</button>
+              <button mat-raised-button (click)="setQuestions()" [disabled]="!securityQuestionsForm.valid">Save</button>
+            </div>
+          </form>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+
+</div>

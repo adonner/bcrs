@@ -1,0 +1,164 @@
+<!--
+============================================
+; Title: user-detail-dialog.component
+; Author: Reva Baumann
+; Date: 01/09/2020
+; Modified By: Troy Martin
+; Description: User config CreateUser
+;===========================================
+-->
+<div fxLayout="column">
+  <h2>{{title}}</h2>
+  <!-- include the stepper liner requires form to be valid before continuing -->
+  <mat-horizontal-stepper [linear]="!id" #stepper>
+    <mat-step [stepControl]="accountForm">
+      <form [formGroup]="accountForm">
+        <ng-template matStepLabel>Account</ng-template>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-form-field fxFlex="50%">
+            <input
+              type="text"
+              matInput
+              formControlName="username"
+              placeholder="Username"
+              autofocus
+            />
+            <mat-error *ngIf="accountForm.controls['username'].hasError('usernameExists')">The username is already in use.</mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex="50%" *ngIf="!id">
+            <input
+              type="password"
+              matInput
+              formControlName="password"
+              placeholder="Password"
+            />
+            <mat-error *ngIf="accountForm.controls['password'].hasError('minlength')">Minimum of 8 characters</mat-error>
+            <mat-error *ngIf="accountForm.controls['password'].hasError('pattern')">Requires one uppercase, one lowercase, and one number.</mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-form-field fxFlex="50%">
+            <mat-label>Role</mat-label>
+            <select matNativeControl formControlName="role">
+              <option *ngFor="let r of roles" [value]="r.name">{{r.name}}</option>
+            </select>
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="personalInfoForm">
+      <form [formGroup]="personalInfoForm">
+        <ng-template matStepLabel>Personal information</ng-template>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-form-field fxFlex="50%">
+            <input
+              type="text"
+              matInput
+              formControlName="firstName"
+              placeholder="First Name"
+              autofocus
+            />
+          </mat-form-field>
+
+          <mat-form-field fxFlex="50%">
+            <input
+              type="text"
+              matInput
+              formControlName="lastName"
+              placeholder="Last Name"
+            />
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-form-field fxFlex="50%">
+            <input
+              type="text"
+              matInput
+              formControlName="phoneNumber"
+              placeholder="Phone Number"
+              mask="(000)000-0000"
+              [showMaskTyped]="true"
+            />
+          </mat-form-field>
+
+          <mat-form-field fxFlex="50%">
+            <input
+              type="text"
+              matInput
+              formControlName="email"
+              placeholder="Email Address"
+              mask="A*@A*.SSS"
+              [dropSpecialCharacters]="false"
+              [specialCharacters]="['@','.','-']"
+            />
+            <mat-error *ngIf="personalInfoForm.controls['email'].errors">Invalid email.</mat-error>
+
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="addressForm">
+      <form [formGroup]="addressForm">
+        <ng-template matStepLabel>Address</ng-template>
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <div fxLayout="column" fxLayoutAlign="start" fxFlexFill>
+            <mat-form-field>
+              <input
+                type="text"
+                matInput
+                formControlName="addressLine1"
+                placeholder="Address Line 1"
+                autofocus
+              />
+            </mat-form-field>
+
+            <mat-form-field>
+              <input
+                type="text"
+                matInput
+                formControlName="addressLine2"
+                placeholder="Address Line 2"
+              />
+            </mat-form-field>
+
+            <mat-form-field>
+              <input
+                type="text"
+                matInput
+                formControlName="city"
+                placeholder="City"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-form-field style="width:50%">
+            <input
+              type="text"
+              matInput
+              formControlName="state"
+              placeholder="State"
+            />
+          </mat-form-field>
+
+          <mat-form-field style="width:50%">
+            <input
+              type="text"
+              matInput
+              formControlName="postalCode"
+              placeholder="Postal Code"
+            />
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+  <div fxLayoutAlign="end" fxLayoutGap="10px">
+    <button mat-raised-button (click)="cancel()">Cancel</button>
+    <button mat-raised-button (click)="saveUser()" [disabled]="accountForm.invalid">Save</button>
+  </div>
+</div>

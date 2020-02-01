@@ -1,0 +1,26 @@
+a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.signin-container {
+    width: 25%;
+    margin: 0 auto;
+}
+
+.mat-raised-button {
+    background-color: #81d4fa;
+    width: fit-content;
+}
+
+.error-message {
+    color: red;
+}
+
+.signin-title {
+    font-weight: lighter;
+}
+
+.error-message {
+    color: red;
+}

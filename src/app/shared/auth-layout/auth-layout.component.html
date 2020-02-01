@@ -1,0 +1,26 @@
+<!--
+============================================
+; Title: layout
+; Author: Richard Krasso
+; Date: 01/13/2020
+; Modified By: Adam Donner
+; Description: layout
+;===========================================
+-->
+<div fxLayout="column" class="body">
+    <!-- navigation -->
+    <nav>
+      <mat-toolbar>
+        <!-- navbar container -->
+        <!--logo-->
+        <a routerLink="/" style="text-decoration: none;"><img src="/assets/bobslogo.png" width="150px" height="120px"></a>
+
+      </mat-toolbar>
+    </nav>
+
+    <!-- main content -->
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+
+</div>

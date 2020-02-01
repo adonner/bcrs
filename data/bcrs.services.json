@@ -1,0 +1,8 @@
+{"_id":{"$oid":"5e250d2d20e3c82968b7ce97"},"description":"Keyboard Cleaning","price":"45.00","isDisabled":false,"date_created":{"$date":{"$numberLong":"1579605035648"}}}
+{"_id":{"$oid":"5e26dc899a59b123f4b1907b"},"isDisabled":false,"date_created":{"$date":{"$numberLong":"1579605035648"}},"description":"Spyware Removal","price":"99.90","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e26dd94b034b14b6473afb4"},"isDisabled":false,"date_created":{"$date":{"$numberLong":"1579605296694"}},"description":"RAM Upgrade","price":"129.99","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e26dda9b034b14b6473afb5"},"isDisabled":false,"date_created":{"$date":{"$numberLong":"1579605296694"}},"description":"Software Installation","price":"49.99","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e26ddc0b034b14b6473afb6"},"isDisabled":false,"date_created":{"$date":{"$numberLong":"1579605296694"}},"description":"PC Tune-up","price":"89.99","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e26ddfdb034b14b6473afb7"},"isDisabled":false,"date_created":{"$date":{"$numberLong":"1579605296694"}},"description":"Password Reset","price":"39.99","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e26de16b034b14b6473afb8"},"isDisabled":false,"date_created":{"$date":{"$numberLong":"1579605296694"}},"description":"Disk Clean-up","price":"149.99","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e34c937895b0c0004422971"},"isDisabled":true,"date_created":{"$date":{"$numberLong":"1580513608236"}},"description":"Mouse cleaning","price":"10.99","__v":{"$numberInt":"0"}}

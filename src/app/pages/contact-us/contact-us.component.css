@@ -1,0 +1,15 @@
+.icons {
+    font-size: 40px;
+}
+.icons-padding {
+    font-size: 40px;
+    padding-top: 10px;
+    padding-right: 10px
+}
+
+:host {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}

@@ -1,0 +1,35 @@
+<!--
+============================================
+; Title: security-question-create-dialog.component
+; Author: Adam Donner
+; Date: 01/12/2020
+; Modified By: Adam Donner
+; Description: Create security question
+;===========================================
+-->
+<div fxLayout="column" fxFlexFill style="padding: 10px;">
+    <h2 mat-dialog-title>Security Question</h2>
+    <mat-dialog-content>
+      <form
+        [formGroup]="form"
+        (ngSubmit)="create(); form.reset()"
+        #securityQuestionForm="ngForm"
+      >
+        <mat-form-field fxLayout="column">
+          <input
+            type="text"
+            matInput
+            [formControl]="form.controls['text']"
+            placeholder="New Question Text"
+            fxFlex
+          />
+        </mat-form-field>
+        <br />
+        <mat-card-actions>
+          <div fxFlex></div>
+          <button (click)="cancel()" mat-raised-button>Cancel</button>
+          <button type="submit" mat-raised-button>Save</button>
+        </mat-card-actions>
+      </form>
+    </mat-dialog-content>
+  </div>

@@ -1,0 +1,35 @@
+<!--
+============================================
+; Title: security-question-edit-dialog.component
+; Author: Adam Donner
+; Date: 01/12/2020
+; Modified By: Adam Donner
+; Description: Edit security question
+;===========================================
+-->
+<div fxLayout="column" fxFlexFill style="padding: 10px;">
+    <h2 mat-dialog-title>Edit Security Question</h2>
+    <mat-dialog-content>
+      <form
+        [formGroup]="form"
+        (ngSubmit)="saveQuestion(); form.reset()"
+        #securityQuestionForm="ngForm"
+      >
+        <mat-form-field fxLayout="column">
+          <input
+            type="text"
+            matInput
+            [formControl]="form.controls['text']"
+            value="{{ question }}"
+            fxFlex
+          />
+        </mat-form-field>
+        <br />
+        <mat-card-actions>
+          <div fxFlex></div>
+          <button (click)="cancel()" mat-raised-button>Cancel</button>
+          <button type="submit" mat-raised-button>Save</button>
+        </mat-card-actions>
+      </form>
+    </mat-dialog-content>
+  </div>

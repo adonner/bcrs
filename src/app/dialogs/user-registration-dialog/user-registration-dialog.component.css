@@ -1,0 +1,15 @@
+.mat-raised-button {
+  background-color: #81d4fa;
+  width: fit-content;
+}
+
+/deep/ .mat-step-header .mat-step-icon-selected {
+  background-color: #81d4fa !important;
+  color: black;
+}
+
+/deep/ .mat-step-header .mat-step-icon-state-edit {
+  background-color: #81d4fa !important;
+  color: black;
+}
+

@@ -1,0 +1,12 @@
+.body {
+    height: 100%;
+    background: linear-gradient(#1565c0 25%, #F5F5F5 25%,  #F5F5F5 75% );
+  }
+
+.mat-toolbar {
+    background-color: #1565c0;
+  }
+
+.content {
+    padding-top: 3rem;
+}

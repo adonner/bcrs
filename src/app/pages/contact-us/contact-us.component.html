@@ -1,0 +1,36 @@
+<!--
+============================================
+; Title: contact-us.component
+; Author: Adam Donner
+; Date: 01/19/2020
+; Modified By: Adam Donner
+; Description: Custom contact us page
+;===========================================
+-->
+<div fxLayout="column" fxFlex="1 1 60%" fxLayoutAlign="center space-around">
+  <mat-card fxLayout="column">
+    <mat-card-title class="signin-title mat-headline">Contact Us</mat-card-title>
+    <mat-card-content fxLayout="column">
+      <div fxLayout="row">
+        <i class="material-icons icons-padding">email</i>
+        <h2>support@programmingpenguins.com</h2>
+      </div>
+      <div fxLayout="row">
+        <i class="material-icons icons-padding">chat</i>
+        <h2><a routerLink="/contactus">Click here</a> to chat with support</h2>
+      </div>
+      <div fxLayout="row">
+        <i class="material-icons icons-padding">phone</i>
+        <h2>Talk to a penguin 1-800-PENGUIN</h2>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center">
+        <h2>Or reach out to us on your favorite platform</h2>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="60px">
+        <i class="fab fa-twitter icons"></i>
+        <i class="fab fa-facebook-f icons"></i>
+        <i class="fab fa-instagram icons"></i>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

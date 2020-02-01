@@ -1,0 +1,45 @@
+<!--
+============================================
+; Title: service-repair.component
+; Author: Adam Donner
+; Date: 01/23/2020
+; Modified By: Adam Donner
+; Description: Service repair page
+;===========================================
+-->
+<div fxLayout="column" fxFlex="1 1 40%" fxLayoutAlign="center space-around">
+  <mat-card fxLayout="column">
+    <mat-card-title class="signin-title mat-headline">Service Repair Page</mat-card-title>
+    <mat-card-content fxLayout="column">
+      <form [formGroup]="form" fxLayout="column wrap">
+        <!-- using an ngFor output the products -->
+        <div fxLayout="row" fxLayoutAlign="space-between center" formArrayName="services"
+          *ngFor="let service of serviceControls.controls;let i = index;" style="padding-top:1rem;">
+          <mat-checkbox color="primary" id="{{i}}" [formControl]="serviceControls.controls[i]">
+            {{ serviceOfferings[i].description }} -- {{serviceOfferings[i].price | currency: "USD"}}
+          </mat-checkbox>
+        </div>
+
+        <div fxLayout="column">
+          <h2>Standard Fees</h2>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="20px">
+          <mat-form-field style="width: 150px !important">
+            <input matInput name="parts" formControlName="parts" type="text" mask="0*.00"
+              [dropSpecialCharacters]="false" value="0.00" placeholder="Additional Parts" />
+          </mat-form-field>
+
+          <mat-form-field style="width: 150px !important">
+            <input matInput type="number" value="0" min="0" formControlName="labor"
+              placeholder="Labor at $50.00 per hour" />
+          </mat-form-field>
+        </div>
+        <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
+          <button mat-raised-button type="reset">Cancel</button>
+          <button mat-raised-button (click)="submit()">Submit</button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

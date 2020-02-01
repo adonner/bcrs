@@ -1,0 +1,47 @@
+<!--
+============================================
+; Title: signin.component
+; Author: Adam Donner
+; Date: 01/12/2020
+; Modified By: Adam Donner
+; Description: Sign in screen
+;===========================================
+-->
+<div fxLayout="column">
+    <mat-card fxFlex class="signin-container mat-elevation-z8">
+        <mat-card-title class="signin-title mat-headline">Bob's Computer Repair Shop</mat-card-title>
+        <br>
+        <mat-card-content>
+            <a class="mat-h4" style="cursor: pointer;" (click)="register()">Create new account</a>
+            <br>
+
+            <!--If unauthorized user-->
+            <small class="error-message" *ngIf="errorMessage">{{ errorMessage }}<br></small>
+
+
+            <mat-card class="mat-elevation-z0" fxLayout="column" fxLayoutGap="10px">
+                <form [formGroup]="form" (ngSubmit)="signin(); form.reset()" #loginForm="ngForm">
+
+                    <mat-card-content fxLayout="column">
+
+                        <mat-form-field>
+                            <input matInput [formControl]="form.controls['username']" placeholder="Username" fxFlex/>
+                        </mat-form-field>
+                        <br/>
+                        <mat-form-field>
+                            <input type="password" matInput [formControl]="form.controls['password']" placeholder="Password" fxFlex/>
+                        </mat-form-field>
+                    </mat-card-content>
+
+                    <mat-card-actions>
+                        <div fxFlex></div>
+                        <button type="submit" mat-raised-button>Login</button>
+                    </mat-card-actions>
+
+                    <a style="cursor: pointer;" (click)="forgotPassword()" fxLayoutAlign="end">Forgot Password?</a>
+                </form>
+            </mat-card>
+
+        </mat-card-content>
+    </mat-card>
+</div>

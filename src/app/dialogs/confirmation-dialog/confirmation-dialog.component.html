@@ -1,0 +1,20 @@
+<!--
+============================================
+; Title: confirmation-dialog.component
+; Author: Troy Martin
+; Date: 01/11/2020
+; Modified By: Troy Martin
+; Description: Generic confirmation dialog
+;===========================================
+-->
+<div fxLayout="column" fxFlexFill style="padding: 10px;">
+  <h2 mat-dialog-title>{{dialogTitle}}</h2>
+  <mat-dialog-content fxLayout="column" fxLayoutAlign="start center">
+    <div fxLayout="row">{{message}}</div>
+  </mat-dialog-content>
+  <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button mat-raised-button (click)="close(true)" class="button-primary">Ok</button>
+    <button mat-raised-button (click)="close(false)">Cancel</button>
+  </mat-dialog-actions>
+</div>
+

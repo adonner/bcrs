@@ -1,0 +1,53 @@
+<!--
+============================================
+; Title: home.component
+; Author: Richard Krasso
+; Date: 01/06/2020
+; Modified By: Troy Martin
+; Description: Home Component
+;===========================================
+
+References:
+Bird, K. (2012, October 19). Technology Quotes to Inspire You Today. Retrieved January 23, 2020, from https://www.rasmussen.edu/degrees/technology/blog/technology-quotes-to-inspire-you-today/
+
+-->
+
+<div fxLayout="column" fxLayoutAlign="center space-around" fxFlex="1 1 50%">
+  <mat-card>
+    <mat-card-header fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex>
+          <h3>Welcome {{username}}</h3>
+        </div>
+        <div fxFlex>
+          <button mat-raised-button type="button" class="font" style="float: right;" color="primary" routerLink="/services">
+            <mat-icon>add</mat-icon>Create an order
+          </button>
+        </div>
+      </div>
+    </mat-card-header>
+    <mat-card-content fxLayout="column" fxLayoutAlign="start">
+      <h3>Our services</h3>
+      <div *ngFor="let s of services" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <span fxFlex="20">{{s.description}}</span> <span fxFlex="10" style="text-align: right;">${{s.price}}</span><div fxFlex></div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <span fxFlex="20">Labor per hour</span> <span fxFlex="10" style="text-align: right;">$50.00</span><div fxFlex></div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <span fxFlex="20">Parts</span> <span fxFlex="10" style="text-align: right;">As quoted</span><div fxFlex></div>
+      </div>
+
+      <h3 style="padding-top: 2rem; padding-bottom: .5rem;">Bob's quote of the day</h3>
+      <div>
+        <blockquote>
+          <!-- (Bird, 2012)-->
+          "Never trust a computer you can’t throw out a window."
+
+          — Steve Wozniak</blockquote>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+
+</div>

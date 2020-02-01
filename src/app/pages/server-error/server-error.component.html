@@ -1,0 +1,27 @@
+<!--
+============================================
+; Title: server-error.component
+; Author: Troy Martin
+; Date: 01/17/2020
+; Modified By: Troy Martin
+; Description: Custom server error page
+;===========================================
+-->
+<div fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="center space-around">
+    <mat-card fxLayout="column" fxFlex="1 1 60%" fxLayoutAlign="center space-around">
+      <mat-card-content fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex="30%">
+          <h3>Server error</h3>
+          <p>There was a server error processing your last request. To return to the application <a routerLink="/" style="cursor: pointer; text-decoration: underline;">click here</a>.</p>
+        </div>
+        <div fxFlex>
+          <img src="../../../assets/tistio-ZO0weaaDrBs-unsplash.jpg" class="responsive" title="Photo by Tistio on Unsplash">
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- footer -->
+  <app-footer></app-footer>
+</div>

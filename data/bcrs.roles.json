@@ -1,0 +1,3 @@
+{"_id":{"$oid":"5e281fc9094a974d38ccf5de"},"isDisabled":false,"name":"Standard"}
+{"_id":{"$oid":"5e281fd5094a974d38ccf5df"},"name":"Admin","isDisabled":false}
+{"_id":{"$oid":"5e34ca0b895b0c0004422973"},"isDisabled":true,"name":"read-sometimes","__v":{"$numberInt":"0"}}
